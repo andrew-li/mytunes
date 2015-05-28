@@ -6,6 +6,7 @@ var PlayerView = Backbone.View.extend({
   el: '<audio controls autoplay />',
 
   initialize: function() {
+//listen for end of song, send intent to songqueue for natural dequeue
   },
 
   setSong: function(song){
@@ -13,7 +14,11 @@ var PlayerView = Backbone.View.extend({
     this.render();
   },
 
+//listen for click to remove current song, send intent to remove current song
+
   render: function(){
+//show current song
+//extra credit: play count and upvote/downvote
     return this.$el.attr('src', this.model ? this.model.get('url') : '');
   }
 
