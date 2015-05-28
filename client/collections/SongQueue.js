@@ -5,35 +5,31 @@ var SongQueue = Songs.extend({
   },
 
   enqueue: function(song){
-//console.log("in songQ");
+
     this.add(song);
     if(this.models.length === 1)
       song.play();
     this.trigger('showQueue');
+
   },
 
   dequeue: function(song){
-console.log("DQ called");
-console.log(this.models);
-    this.remove(song);
-console.log(this.models);
+
+    if(song === this.at(0))
+      this.playFirst();
+    else
+      this.remove(song);
     this.trigger('showQueue');
+
   },
 
   playFirst: function(){
-console.log("playfirst called");
-console.log(this.models);
-    this.shift();
-console.log(this.models);
-    if (this.models.length >= 1) {
-      this.at(0).play();
-    }
-    this.trigger('showQueue');
-  }
 
-//actions
-//enqueue
-//natural dequeue (remove from front, put onto player)
-//unnatural dequeue (remove anywhere in queue)
+    this.shift();
+    if (this.models.length >= 1)
+      this.at(0).play();
+    this.trigger('showQueue');
+
+  }
 
 });

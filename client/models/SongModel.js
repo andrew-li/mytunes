@@ -1,9 +1,15 @@
 // SongModel.js - Defines a backbone model class for songs.
 var SongModel = Backbone.Model.extend({
 
+  initialize: function() {
+    this.set({
+      played : 0,
+      votes: 0
+    });
+  },
+
   play: function(){
     // Triggering an event here will also trigger the event on the collection
-console.log("Song Model play gets called");
     this.trigger('play', this);
   },
   //send intent to enqueue the song
