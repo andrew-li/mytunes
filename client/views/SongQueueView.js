@@ -9,13 +9,12 @@ var SongQueueView = Backbone.View.extend({
 
     // this is the event listener for a collection of models (SongQueue)
     this.collection.on('showQueue', this.render, this);
-
   },
 
 //listen to libraryentry for enqueue events, and sends intent to songqueue to enqueue
 
   render: function() {
-console.log(this.collection);
+
     this.$el.children().detach();
 
     this.$el.html('<th>Queue</th>').append(

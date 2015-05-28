@@ -7,6 +7,10 @@ var PlayerView = Backbone.View.extend({
 
   initialize: function() {
 //listen for end of song, send intent to songqueue for natural dequeue
+    var oldThis = this;
+    this.$el.on('ended', function() {
+      oldThis.model.playFirst();
+    });
   },
 
   setSong: function(song){

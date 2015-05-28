@@ -14,13 +14,23 @@ var AppModel = Backbone.Model.extend({
 
 
     params.library.on('play', function(song){
+//console.log("App Model play gets called");
       this.set('currentSong', song);
     }, this);
 
     //enqueue
     params.library.on('enqueue', function(song){
-console.log("dsfsd", song);
+//console.log("in app model");
       this.get('songQueue').enqueue(song);
+    }, this);
+
+    //dequeue
+    params.library.on('dequeue', function(song){
+      this.get('songQueue').dequeue(song);
+    }, this);
+
+    params.library.on('playFirst', function(){
+      this.get('songQueue').playFirst();
     }, this);
 
   }
