@@ -3,7 +3,13 @@ var LibraryEntryView = Backbone.View.extend({
 
   tagName: 'tr',
 
-  template: _.template('<td>(<%= artist %>)</td><td><%= title %></td>'),
+  template: _.template('<td>(<%= artist %>)</td><td><%= title %></td><td><%= played %></td>'),
+
+  initialize: function() {
+    this.model.on('change:played', function() {
+      this.render();
+    }, this);
+  },
 
   events: {
     'click': function() {
@@ -12,7 +18,6 @@ var LibraryEntryView = Backbone.View.extend({
       //this.model.play();
     }
   },
-
 
   render: function(){
     return this.$el.html(this.template(this.model.attributes));
